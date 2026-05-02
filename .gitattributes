@@ -1,0 +1,4 @@
+LaunchTestEnv.bat merge=ours
+.hemtt/missions/** merge=ours
+.hemtt/presets/** merge=ours
+launch.toml merge=ours
