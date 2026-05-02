@@ -1,0 +1,5 @@
+[arsenal]
+presets   = [ "Dev_Preset" ]       
+mission   = "Arsenal.VR"              
+file_patching = true                     
+parameters = [ "-nosplash", "-skipIntro", "-world=empty" ]

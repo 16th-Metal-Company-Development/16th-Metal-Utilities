@@ -1,0 +1,23 @@
+name = "16th Metal Company Utilities";
+prefix = "MET"
+mainprefix = "z"
+
+[build]
+addons_directory = "addons"
+
+[properties]
+author = "16th Modding Team"
+
+[hemtt.release]
+sign = true
+
+[files]
+include = [
+    "16th_logo.paa",
+    "mod.cpp",
+]
+
+[version]
+major = 1
+minor = 0
+patch = 0

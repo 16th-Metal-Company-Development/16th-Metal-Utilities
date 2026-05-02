@@ -1,0 +1,88 @@
+name: Release Mod
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    permissions:
+      contents: write
+
+    steps:   
+    - name: Checkout the source code
+      uses: actions/checkout@v4
+
+    - name: Setup HEMTT
+      uses: arma-actions/hemtt@v1
+
+    - name: Track Version
+      id: get_version
+      shell: pwsh
+      run: |
+        $lines = Get-Content ".hemtt\project.toml"
+        $major = ($lines | Select-String '^major\s*=\s*(\d+)').Matches.Groups[1].Value
+        $minor = ($lines | Select-String '^minor\s*=\s*(\d+)').Matches.Groups[1].Value
+        $patch = ($lines | Select-String '^patch\s*=\s*(\d+)').Matches.Groups[1].Value
+
+        $version = "$major.$minor.$patch"
+        Write-Host "Extracted version=$version"
+
+        echo "version=$version" >> $env:GITHUB_OUTPUT
+
+    - name: Build Mod
+      run: hemtt release --no-rap
+
+    - name: Rename Release folder
+      run: mv .hemttout/release .hemttout/16th-Metal-Utilities/
+
+    - name: Zip Release Folder
+      shell: pwsh
+      run: |
+        Write-Host "Zipping with version=v${{ steps.get_version.outputs.version }}"
+        Compress-Archive -Path ".hemttout/16th-Metal-Utilities" `
+                          -DestinationPath "16th-Metal-Utilities-v${{ steps.get_version.outputs.version }}.zip"
+        dir *.zip
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.get_version.outputs.version }}
+        release_name: "16th Metal Utilities v${{ steps.get_version.outputs.version }}"
+        body: ${{ github.event.pull_request.body || github.event.head_commit.message || 'Automated release of MyMod' }}
+        draft: false
+        prerelease: false
+
+    - name: Upload to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: "16th-Metal-Utilities-v${{ steps.get_version.outputs.version }}.zip"
+        asset_name: "16th-Metal-Utilities-v${{ steps.get_version.outputs.version }}.zip"
+        asset_content_type: "application/zip"
+
+    - name: Publish to Steam Workshop
+      uses: gruppe-adler/action-release-to-steam-ws@v1
+      with:
+          file_id: 000000000
+          username: ${{ secrets.STEAM_ACCOUNT_USER }}
+          password: ${{ secrets.STEAM_ACCOUNT_PASS }}
+          path: ".hemttout/16th-Metal-Utilities"
+          name: "16th Metal Company Utilities Mod"
+          change_notes_title: ${{ github.event.release.name }}
+          change_notes: ${{ github.event.release.body }}
+
+    - name: Dump SteamCMD stderr on failure or cancel
+      if: ${{ failure() || cancelled() }}
+      shell: pwsh
+      run: |
+        $log = "D:\a\_actions\gruppe-adler\action-release-to-steam-ws\v1\dist\logs\stdout.txt"
+        Write-Host "=== SteamCMD stderr ==="
+        Get-Content $log -Raw
