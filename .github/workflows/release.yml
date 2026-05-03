@@ -71,7 +71,7 @@ jobs:
     - name: Publish to Steam Workshop
       uses: gruppe-adler/action-release-to-steam-ws@v1
       with:
-          file_id: 000000000
+          file_id: 3672212644
           username: ${{ secrets.STEAM_ACCOUNT_USER }}
           password: ${{ secrets.STEAM_ACCOUNT_PASS }}
           path: ".hemttout/16th-Metal-Utilities"
