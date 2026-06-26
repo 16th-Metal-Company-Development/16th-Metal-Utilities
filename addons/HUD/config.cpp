@@ -22,7 +22,7 @@ class OPTRE_HUD_SructuredTextCenter;
 class OPTRE_HUD_SructuredTextLeft;
 class RscTitles
 {
-    class OPTRE_P2_Main_1_white_NoHex
+    class Metal_P2_Main_1_white_NoHex
 	{
 		idd=8000;
 		duration=99999;
@@ -266,7 +266,7 @@ class CfgOptreHudSchemes
 			{
 				value[]=
 				{
-					"OPTRE_P2_Main_1_white_NoHex",
+					"Metal_P2_Main_1_white_NoHex",
 					"[Plain] White",
 					"1,1,1,0.28"
 				};
