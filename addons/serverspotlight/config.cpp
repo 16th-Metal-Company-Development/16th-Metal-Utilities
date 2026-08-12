@@ -7,7 +7,8 @@ class CfgPatches
 		requiredVersion=0.60000002;
 		requiredAddons[]=
 		{
-			"A3_3den"
+			"A3_3den",
+            "3AS_Main_Intro"
 		};
 		version=2;
 		versionStr=2;
