@@ -1,0 +1,17 @@
+//Arma 3 Music Script
+//Original Script made by Niklas Brettschneider
+//Edits and fixes made by Cheif22
+
+//All shots are monitored and processed here.
+
+_unit = _this select 0; // Object - Object the event handler is assigned to
+_weapon = _this select 1; // String - Fired weapon
+_muzzle = _this select 2; // String - Muzzle that was used
+_mode = _this select 3; // String - Current mode of the fired weapon
+_ammo = _this select 4; // String - Ammo used
+_magazine = _this select 5; // String - magazine name which was used
+_projectile = _this select 6; // Object - Object of the projectile that was shot 
+
+hint format ["Shot fired with Weapon %1", _weapon];
+
+[1] execVM "z\MET\addons\adaptivecombatmusic\battleIntensityChange.sqf";
