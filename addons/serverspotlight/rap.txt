@@ -1,3 +1,0 @@
-prefix=
-product=
-version=Tue Oct 22 03:08:34 2019
