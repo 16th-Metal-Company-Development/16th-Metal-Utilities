@@ -1,0 +1,4 @@
+["tfar_sound_on", "CHECKBOX", ["Activate entire addon", "Activates sound for TFAR"], "Sounds For TFAR", true] call CBA_fnc_addSetting;
+["tfar_sound_external", "CHECKBOX", ["Activate external sound", "Activates external sound that plays when unit uses radio"], "Sounds For TFAR", true] call CBA_fnc_addSetting;
+// WIP //["tfar_sound_activate_actions", "CHECKBOX", ["Activate actions", "Activates actions for handling radio sounds"], "Sounds For TFAR", true] call CBA_fnc_addSetting;
+["tfar_type_sound", "LIST", ["Selection of Radio Sound Volume Level", "You can select between two volume levels - Low and Default"], "Sounds For TFAR", [[1, 2], ["Default","Low"], 1]] call CBA_fnc_addSetting;
