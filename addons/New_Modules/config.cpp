@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class MET_U_Modules
+	class MET_New_Modules
 	{
 		// units[] = { "MET_Module_BuildZone","MET_Module_LogisticsBudget","MET_Module_VehiclePad","MET_Module_WaveDefense_Eden","MET_Module_Teleport"};
 		units[] = { "MET_Module_Teleport"};
@@ -13,7 +13,7 @@ class CfgPatches
 {
 	class MET_Settings_PreInit
 	{
-		init = "call compile preprocessFileLineNumbers 'z\MET\addons\modules\Settings\XEH_preInit.sqf'";
+		init = "call compile preprocessFileLineNumbers 'z\MET\addons\new_modules\Settings\XEH_preInit.sqf'";
 	};
 };*/
 
@@ -662,21 +662,21 @@ class CfgFunctions
 
 		/*class Module_BuildZone
 		{
-			file = "z\MET\addons\modules\functions";
+			file = "z\MET\addons\new_modules\functions";
 
 			class BuildZone{};
 		};*/
 
 		/*class Module_LogisticsBudget
 		{
-			file = "z\MET\addons\modules\functions";
+			file = "z\MET\addons\new_modules\functions";
 
 			class LogisticsBudget {};
 		};*/
 
 		/*class Module_SpawnPad
 		{
-			file = "z\MET\addons\modules\functions\spawnpad";
+			file = "z\MET\addons\new_modules\functions\spawnpad";
 
 			class AddSpawnAction {};
 			class GetSpawnPresets {};
@@ -693,7 +693,7 @@ class CfgFunctions
 
 		/*class Module_SupportPad
 		{
-			file = "z\MET\addons\modules\functions\supportpad";
+			file = "z\MET\addons\new_modules\functions\supportpad";
 
 			class AddSupportAction {};
 			class GetSupportPresets {};
@@ -706,7 +706,7 @@ class CfgFunctions
 
 		/*class Module_VehiclePad_UI
 		{
-			file = "z\MET\addons\modules\functions\spawnpad\ui";
+			file = "z\MET\addons\new_modules\functions\spawnpad\ui";
 			class UpdateDescription {};	
 			class UpdateList {};	
 			class UpdatePreview {};	
@@ -714,14 +714,14 @@ class CfgFunctions
 
 		class WaveDefense_Init
 		{
-			file = "z\MET\addons\modules\functions\wavedefense\init";
+			file = "z\MET\addons\new_modules\functions\wavedefense\init";
 
 			class initModule {};
 		};
 
 		class WaveDefense_Core
 		{
-			file = "z\MET\addons\modules\functions\wavedefense\core";
+			file = "z\MET\addons\new_modules\functions\wavedefense\core";
 
 			class buildWaveComposition {};
 			class selectSpawnPositions {};
@@ -731,7 +731,7 @@ class CfgFunctions
 
 		class WaveDefense_UI
 		{
-			file = "z\MET\addons\modules\functions\wavedefense\ui";
+			file = "z\MET\addons\new_modules\functions\wavedefense\ui";
 
 			class updateWaveHUD {};
 			class showWaveHUD {};
@@ -740,7 +740,7 @@ class CfgFunctions
 
 		class Portals
 		{
-			file = "z\MET\addons\modules\functions\teleport";
+			file = "z\MET\addons\new_modules\functions\teleport";
 
 			class getPortalID {};
 			class modulePortal {};
